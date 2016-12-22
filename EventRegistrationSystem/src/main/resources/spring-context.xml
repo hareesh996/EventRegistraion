@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	<context:component-scan base-package="com.strikers">
+	</context:component-scan>
+	<!-- Dozer configuration -->
+	<bean id="dozerMapper" class="org.dozer.spring.DozerBeanMapperFactoryBean" scope="singleton">
+		<property name="mappingFiles" value="classpath:beanmappings.xml"></property>
+	</bean>
+	
+	<bean name="hibernateSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocations">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>	
+	</bean>
+	
+	<bean name="eventManagementDao" class="com.mindtree.evtmanagement.dao.impl.EventMangementDaoImpl">
+		<property name="sessionFactory" ref="hibernateSessionFactory"></property>
+	</bean>
+	
+	<bean name="eventManageManagementSvc" class="com.mindtree.evtmanagement.svc.impl.EventManagementSvcImpl">
+		<property name="eventManagementDao" ref="eventManagementDao"/>
+		<property name="mapper" ref="dozerMapper"/>
+	</bean>
+		
+</beans>

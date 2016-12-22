@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping map-id="EmployeeMapper">
+		<class-a>com.mindtree.evtmanagement.dao.entity.Employee</class-a>
+		<class-b>com.mindtree.evtmanagement.dto.EmployeeDto</class-b>
+		<field>
+			<a>mid</a>
+			<b>mid</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+		<field>
+			<a>joiningDate</a>
+			<b>joiningDate</b>
+		</field>
+		<field>
+			<a>emailId</a>
+			<b>emailId</b>
+		</field>
+		<field map-id="EventsMapper">
+			<a>events</a>
+			<b>events</b>
+		</field>
+	</mapping>
+	
+	<mapping map-id="EventsMapper">
+		<class-a>com.mindtree.evtmanagement.dao.entity.Event</class-a>
+		<class-b>com.mindtree.evtmanagement.dto.EventDto</class-b>
+		<field>
+			<a>id</a>
+			<b>eventId</b>
+		</field>
+		<field>
+			<a>eventTitle</a>
+			<b>eventTitle</b>
+		</field>
+		<field>
+			<a>description</a>
+			<b>description</b>
+		</field>
+	</mapping>
+		
+	
+
+
+</mappings>
